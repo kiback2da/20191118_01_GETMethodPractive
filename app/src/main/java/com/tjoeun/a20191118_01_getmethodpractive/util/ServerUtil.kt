@@ -75,6 +75,7 @@ class ServerUtil {
             //URL 최종 확정
             var requestUrl = urlBuilder.build().toString()
             Log.d("로그 : RequestURL",requestUrl)
+            Log.d("로그 : Token",ContextUtil.getToken(context))
 
             var request = Request.Builder().url(requestUrl).header("X-Http-Token",ContextUtil.getToken(context)).build()
 
@@ -84,8 +85,7 @@ class ServerUtil {
                 }
 
                 override fun onResponse(call: Call, response: Response) {
-                    val body = response.body().toString()
-                    val json = JSONObject(body)
+                    val json = JSONObject(response.body().toString())
                     handler?.onResponse(json)
                 }
 
