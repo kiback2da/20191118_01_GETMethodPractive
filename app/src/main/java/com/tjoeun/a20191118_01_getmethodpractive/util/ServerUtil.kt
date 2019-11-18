@@ -85,6 +85,7 @@ class ServerUtil {
                 }
 
                 override fun onResponse(call: Call, response: Response) {
+                    Log.e("로그 : onResponse",response.toString())
                     val json = JSONObject(response.body().toString())
                     handler?.onResponse(json)
                 }
