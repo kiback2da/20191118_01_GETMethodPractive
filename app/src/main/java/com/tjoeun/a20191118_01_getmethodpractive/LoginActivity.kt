@@ -13,13 +13,29 @@ class LoginActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        Log.d("로그 : ContextUtil","${}")
-
         setupEvents()
         setValues()
     }
 
     override fun setupEvents() {
+        loginChkBoxRememberID.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                ContextUtil.setRememberId(mContext,true)
+            }else{
+                ContextUtil.setRememberId(mContext,false)
+            }
+
+            Log.d("로그 : loginChkBox","${ContextUtil.getRememberId(mContext)}")
+        }
+
+        loginChkBoxAutoLogin.setOnCheckedChangeListener { buttonView, isChecked ->
+            if(isChecked){
+                ContextUtil.setAutoLogin(mContext,true)
+            }else{
+                ContextUtil.setAutoLogin(mContext,false)
+            }
+        }
+
         loginBtnLogin.setOnClickListener {
             if(loginChkBoxRememberID.isChecked){
                 ContextUtil.setUserId(mContext,loginEdtID.text.toString())
@@ -31,6 +47,14 @@ class LoginActivity : BaseActivity() {
     }
 
     override fun setValues() {
+        var remeberId = ContextUtil.getRememberId(mContext)
+
+        if(remeberId){
+            loginChkBoxRememberID.isChecked = true
+            loginEdtID.setText(ContextUtil.getUserId(mContext))
+        }else{
+            loginChkBoxRememberID.isChecked = false
+        }
 
     }
 }
