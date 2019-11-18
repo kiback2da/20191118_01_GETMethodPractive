@@ -31,11 +31,24 @@
         android:inputType="textPassword"
         android:hint="비밀번호 입력"/>
 
-    <CheckBox
-        android:id="@+id/loginChkBoxRememberID"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="아이디 기억하기"/>
+        android:orientation="horizontal">
+        <CheckBox
+            android:id="@+id/loginChkBoxRememberID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이디 기억하기"/>
+
+        <CheckBox
+            android:id="@+id/loginChkBoxAutoLogin"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="아이디 기억하기"/>
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/loginBtnLogin"

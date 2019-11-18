@@ -1,0 +1,30 @@
+package com.tjoeun.a20191118_01_getmethodpractive.util
+
+import android.content.Context
+
+class ContextUtil {
+
+    companion object{
+        //메모장의 파일 이름에 대응되는 개념
+        val prefName = "ContextPreference"
+
+        //사용자의 id를 저장하는 항목 이름
+        val USER_ID = "USER_ID"
+
+        //사용자 ID를 저장해주는 fun => setter
+        fun setUserId(context: Context, userid:String){
+            //메모장(파일이름 : ContextPreference)을 실제로 여는 동작
+            var pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+
+            //메모장에 내용을 작성하고 저장하는 부분
+            pref.edit().putString(USER_ID,userid).apply()
+        }
+
+        fun getUserId(context: Context) : String{
+            var pref = context.getSharedPreferences(prefName, Context.MODE_PRIVATE)
+
+            return pref.getString(USER_ID,"")!!
+        }
+    }
+
+}
